@@ -1,0 +1,27 @@
+1 -> 2 -> 6
+3 -> 4 -> 10
+3 -> 9 -> 11 -> 4
+
+soted_list -> None
+(1, next) < (3, next)
+soted_list -> (1, next)
+(2, next) < (3, next)
+soted_list -> (1, next) -> (2, next)
+
+for linkedlists in entire_list:
+|	sorted_lst = listNode(0)
+|	tracker = sorted_list
+|	while l1 and l2:
+|	|	if l1.val < l2.val:
+|	|	|	tracker.next = l1
+|	|	|	l1 = l1.next
+|	|	elif l1.val == l2.val:
+|	|	|	tracker.next = l1
+|	|	|	l1 = l1.next
+|	|	|	tracker.next = l2
+|	|	|	l2 = l2.next
+|	|	else:
+|	|	|	tracker.next = l2
+|	|	|	l2 = l2.next
+|	|	tracker = tracker.next
+|	print(sorted_list.next) #1->2->3->4->6->10
