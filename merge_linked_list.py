@@ -73,7 +73,7 @@ class Solution:
 				tracker.next = l2
 				# Move the tracker pointer to
 				# read the the next value.
-				tracker = tracker.next
+				#tracker = tracker.next
 				# Move the List with small
 				# value to next position.
 				l2 = l2.next
@@ -109,10 +109,11 @@ class Solution:
 				tracker.next = l1
 				# Move the tracker pointer to
 				# read the the next value.
-				tracker = tracker.next
+				#tracker = tracker.next
 				# Move the List with small
 				# value to next position.
 				l1 = l1.next
+			tracker = tracker.next
 		# Check for any remaining
 		# values in the list l1.
 		while l1:
@@ -134,3 +135,60 @@ if __name__ == '__main__':
 	lst1 = s.convert_list_to_llist(ls)
 	lst2 = s.convert_list_to_llist(ls2)
 	s.merge_llist(lst1, lst2)
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+        # If an empty list is passed
+        # return None.
+        if len(lists) == 0:
+            return None
+        # Hold the first linked list
+        # in a list element.
+        l1 = lists[0]
+        # Iterate through the entire
+        # list starting from index 1.
+        for i in range(1, len(lists)):
+        	# Linked list instance to
+        	# store the sorted linked
+        	# list for each iteration.
+            sorted_list = ListNode(0)
+            # Tracker pointer to track
+            # traverse through the new
+            # sorted list.
+            tracker = sorted_list
+            # Instantiate the second
+            # list to compare.
+            l2 = lists[i]
+            # Linked List compare and
+            # merge module.
+            while l1 and l2:
+                if l1.val < l2.val:
+                    tracker.next = l1
+                    tracker = tracker.next
+                    l1 = l1.next
+                elif l1.val == l2.val:
+                    tracker.next = l1
+                    tracker = tracker.next
+                    l1 = l1.next
+                    tracker.next = l2
+                    tracker = tracker.next
+                    l2 = l2.next
+                else:
+                    tracker.next = l2
+                    l2 = l2.next
+                    tracker = tracker.next
+            if l1:
+                tracker.next = l1
+            if l2:
+                tracker.next = l2
+            # Upadate the sorted list
+            # into l1 instance to carry
+            # on the comparison.
+            l1 = sorted_list.next
+        return l1
